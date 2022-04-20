@@ -2,7 +2,10 @@ const objectOne = {
     firstName: 'Piet',
     lastName: 'Janssens',
     job: 'Fighter',
+    getJobAndName: function() {
+        console.log(`My name is ${this.firstName} ${this.lastName} and I am a ${this.job}`);
+    }
 };
 
-console.log(`My name is ${objectOne.firstName} ${objectOne.lastName} and I am a ${objectOne.job}`);
+objectOne.getJobAndName();
 
