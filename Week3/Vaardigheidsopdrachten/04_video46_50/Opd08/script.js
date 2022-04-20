@@ -1,9 +1,9 @@
-for (let i = 0; i <= 10000; i + 100) {
-    console.log(`For: ${i}`);
+for (let i = 0; i <= 100; i++) {
+    console.log(`For: ${i * 100}`);
 }
 
 let i = 0;
-while(i <= 10000) {
-    console.log(`While: ${i}`)
-    i + 100;
+while(i <= 100) {
+    console.log(`While: ${i * 100}`)
+    i ++;
 }
