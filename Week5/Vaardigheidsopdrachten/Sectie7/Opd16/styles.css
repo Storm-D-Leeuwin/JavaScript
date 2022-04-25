@@ -1,0 +1,26 @@
+.container {
+    width: 25vw;
+    height: 25vh;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    column-gap: 10px;
+}
+
+.klik {
+    background-color: pink;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nummer {
+    background-color: purple;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
