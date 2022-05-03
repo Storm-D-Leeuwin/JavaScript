@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box score">
+            <p class="text-score">SCORE:  <span class="n-score">0</span></p>
+        </div>
+        <div class="box left-number">
+            <span class="n-left-number"></span>
+        </div>
+        <div class="box mid">
+            <span class="ope"></span>
+        </div>
+        <div class="box right-number">
+            <span class="n-right-number"></span>
+        </div>
+        <div class="box antwoord">
+            <input type= "number" class="guess">
+            <button class="btn check">Answer me!</button>
+        </div>
+    </div>
+
+    <div class="modal hidden">
+        <h1 class="titel">Gefeliciteerd</h1>
+        <h3 class="ondertitel">Je hebt:</h3>
+        <li> <span class="goed"></span> vragen goed beantwoord</li>
+        <li> <span class="fouten">0</span> fout(en) gemaakt</li>
+    </div>
+    <div class="overlay hidden"></div>
+    <button class="button hidden">Replay</button>
+</body>
+</html>
+
+<script src="script.js"></script>
