@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.div-container {
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-columns: 1fr;
+
+    width: 300px;
+    height: 300px;
+
+    margin: auto;
+    margin-top: 20px;
+    row-gap: 25px;
+}
+
+.innerBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divOne {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(168, 254, 225);
+}
+
+.divThree {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(168, 254, 225);
+}
+
+.divTwo {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas: 
+                        'one one one two three'
+                        'one one one four three'
+                        'one one one four three'
+                        'five six six six seven'
+                        'eight eight eight eight seven'
+                        ;
+}
+
+.div1 {
+    grid-area: one;
+    background-color: rgb(141, 48, 141);
+}
+
+.div2 {
+    grid-area: two;
+    background-color: pink;
+}
+
+.div3 {
+    grid-area: three;
+    background-color: lightgreen;
+}
+
+.div4 {
+    grid-area: four;
+    background-color: violet;
+}
+
+.div5 {
+    grid-area: five;
+    background-color: blanchedalmond;
+}
+
+.div6 {
+    grid-area: six;
+    background-color: pink;
+}
+
+.div7 {
+    grid-area: seven;
+    background-color: palevioletred;
+}
+
+.div8 {
+    grid-area: eight;
+    background-color: greenyellow;
+}
+
+.btn {
+    height: 25px;
+    width: 100px;
+
+    margin-left: 10px;
+    font-size: 10px;
+}
