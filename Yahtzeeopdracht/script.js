@@ -92,13 +92,18 @@ function roll () {
         fullHouseChecker();
         yahtzeeCheck();
         chanceCheck();
-        endGameCheck();
 
         
         // CLick Points
         pointsBlockClick();
         lowerPointsCheck();
+        
+        if (rounds == 12) {
+        endGameCheck();
+        }
     }
+
+
    
 } 
 
@@ -481,9 +486,8 @@ let lowerPointsCheck = () => {
  }
 }
 
-const endGameCheck = () => {
-    if (rounds == 13) {
-        fullScore = upScorePlusBonus + lowerScore;
-        document.querySelector('.fullScore').textContent = fullScore;
-    }
+
+let endGameCheck = () => {
+    fullScore = threeOfKinds + fourOfKinds + fullHouse + smallStraight + largeStraight + yahtzees + chances + ones + twos + threes + fours + fives + sixes + bonus;
+    document.querySelector('.fullScore').textContent = fullScore;
 }
