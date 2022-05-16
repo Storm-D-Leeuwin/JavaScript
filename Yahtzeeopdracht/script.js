@@ -3,7 +3,7 @@
 let rollsLeft = 3;
 let dicesHold = [false, false, false, false, false];
 
-let currentDices = [1,1,1,1,1];
+let currentDices = [1, 1, 1, 1, 1];
 let ones = 0;
 let twos = 0;
 let threes = 0;
@@ -30,15 +30,15 @@ let oneToSixClicked = [false, false, false, false, false, false];
 
 let rounds = 0;
 
-document.querySelector('.totalRolls').textContent = rollsLeft;  
+document.querySelector('.totalRolls').textContent = rollsLeft;
 
 let images = [
-   "/img/01stip.PNG",
-   "/img/02stip.PNG",
-   "/img/03stip.PNG",
-   "/img/04stip.PNG",
-   "/img/05stip.PNG",
-   "/img/06stip.PNG" 
+    "/img/01stip.PNG",
+    "/img/02stip.PNG",
+    "/img/03stip.PNG",
+    "/img/04stip.PNG",
+    "/img/05stip.PNG",
+    "/img/06stip.PNG"
 ];
 let dice = document.querySelectorAll("img");
 
@@ -50,20 +50,20 @@ function gameStart() {
 gameStart()
 
 
-function roll () {
+function roll() {
 
     if (rollsLeft != 0) {
 
         // Add Roll Animation
-        dice.forEach(function(die, index) {
+        dice.forEach(function (die, index) {
             if (dicesHold[index] == false) {
                 die.classList.add("shake");
             }
         });
 
         // Change Numbers Dices
-        dicesHold.forEach(function(dice, index) {
-            if (dicesHold[index] == false ) {
+        dicesHold.forEach(function (dice, index) {
+            if (dicesHold[index] == false) {
                 currentDices[index] = Math.floor(Math.random() * 6);
                 document.querySelector(`.dice-${index + 1}`).setAttribute("src", images[currentDices[index]])
             }
@@ -71,12 +71,12 @@ function roll () {
 
         // Remove Roll animation
         setTimeout(function () {
-                dice.forEach(function(die){
+            dice.forEach(function (die) {
                 die.classList.remove("shake")
-                });
-            }, 1000
+            });
+        }, 1000
         );
-        
+
         // Change rollsLeft - 1
         rollsLeft -= 1;
         document.querySelector('.totalRolls').textContent = rollsLeft;
@@ -93,50 +93,50 @@ function roll () {
         yahtzeeCheck();
         chanceCheck();
 
-        
+
         // CLick Points
         pointsBlockClick();
         lowerPointsCheck();
-        
-        if (rounds == 12) {
-        endGameCheck();
+
+        if (rounds == 13) {
+            endGameCheck();
         }
     }
 
 
-   
-} 
+
+}
 
 function addClickFunction() {
-document.querySelectorAll(".dice").forEach((dice, index) => {
-     
+    document.querySelectorAll(".dice").forEach((dice, index) => {
+
         dice.addEventListener("click", () => {
-            if (dice.classList.contains("selected") && rollsLeft < 3 ) {
+            if (dice.classList.contains("selected") && rollsLeft < 3) {
                 dice.classList.remove("selected")
                 dicesHold[index] = false;
-               
-            } else if (rollsLeft < 3){
+
+            } else if (rollsLeft < 3) {
                 dice.classList.add("selected")
                 dicesHold[index] = true;
-                
+
             }
-           
+
         })
-     })
+    })
 }
 
 function pointsBlockClick() {
-  document.querySelectorAll(".pointsBlock").forEach((block, index) => {
-      block.addEventListener("click", () => {
-          if (rollsLeft < 3 && oneToSixClicked[index] == false) {
-            block.classList.add("checked");
-            oneToSixClicked[index] = true;
-             
-            nextRound();
-          }
-         
-      })
-  })
+    document.querySelectorAll(".pointsBlock").forEach((block, index) => {
+        block.addEventListener("click", () => {
+            if (rollsLeft < 3 && oneToSixClicked[index] == false) {
+                block.classList.add("checked");
+                oneToSixClicked[index] = true;
+
+                nextRound();
+            }
+
+        })
+    })
 }
 
 
@@ -146,7 +146,7 @@ function nextRound() {
     document.querySelector(".totalRolls").textContent = rollsLeft;
     rounds++;
     console.log(rounds);
-    document.querySelectorAll(".dice").forEach((dice,index) => {
+    document.querySelectorAll(".dice").forEach((dice, index) => {
         dice.classList.remove("selected");
         dicesHold[index] = false;
     })
@@ -161,266 +161,266 @@ function nextRound() {
 function oneToSixCheck() {
     if (oneToSixClicked[0] == false) {
         ones = 0;
-    } 
+    }
 
     if (oneToSixClicked[1] == false) {
         twos = 0;
-    } 
+    }
 
     if (oneToSixClicked[2] == false) {
         threes = 0;
-    } 
+    }
 
     if (oneToSixClicked[3] == false) {
         fours = 0;
-    } 
+    }
 
     if (oneToSixClicked[4] == false) {
         fives = 0;
-    } 
+    }
 
     if (oneToSixClicked[5] == false) {
         sixes = 0;
-    } 
+    }
 
-    
-    
 
-    currentDices.forEach(function(diceNumber,index,check) {
-       if (diceNumber == 0 && oneToSixClicked[0] == false) { ones += 1}
-       if (diceNumber == 1 && oneToSixClicked[1] == false) { twos += 2}
-       if (diceNumber == 2 && oneToSixClicked[2] == false) { threes += 3}
-       if (diceNumber == 3 && oneToSixClicked[3] == false) { fours += 4}
-       if (diceNumber == 4 && oneToSixClicked[4] == false) { fives += 5}
-       if (diceNumber == 5 && oneToSixClicked[5] == false) { sixes += 6}
-       
-       if (oneToSixClicked[0] == true && oneToSixClicked[1] == true && oneToSixClicked[2] == true && oneToSixClicked[3] == true && oneToSixClicked[4] == true && oneToSixClicked[5] == true) {
-           upScoreNoBonus = ones + twos + threes + fours + fives + sixes;
-           console.log(upScoreNoBonus);
-           document.querySelector('.upTotal').textContent = upScoreNoBonus;
-           
-           if (upScoreNoBonus >= 63) {
-               bonus = 35;
-               document.querySelector('.bonus').textContent = bonus;
-               
-               upScorePlusBonus = upScoreNoBonus + 35;
-               document.querySelector('.totalBonus').textContent = upScorePlusBonus;
-               document.querySelector('.totalBonusA').textContent = upScorePlusBonus;
-           } else if (upScoreNoBonus < 63) {
-               bonus = 0;
-               document.querySelector('.bonus').textContent = bonus;
 
-               upScorePlusBonus = upScoreNoBonus + bonus;
-               document.querySelector('.totalBonus').textContent = upScorePlusBonus;
-               document.querySelector('.totalBonusA').textContent = upScorePlusBonus;
-           }
+
+    currentDices.forEach(function (diceNumber, index, check) {
+        if (diceNumber == 0 && oneToSixClicked[0] == false) { ones += 1 }
+        if (diceNumber == 1 && oneToSixClicked[1] == false) { twos += 2 }
+        if (diceNumber == 2 && oneToSixClicked[2] == false) { threes += 3 }
+        if (diceNumber == 3 && oneToSixClicked[3] == false) { fours += 4 }
+        if (diceNumber == 4 && oneToSixClicked[4] == false) { fives += 5 }
+        if (diceNumber == 5 && oneToSixClicked[5] == false) { sixes += 6 }
+
+        if (oneToSixClicked[0] == true && oneToSixClicked[1] == true && oneToSixClicked[2] == true && oneToSixClicked[3] == true && oneToSixClicked[4] == true && oneToSixClicked[5] == true) {
+            upScoreNoBonus = ones + twos + threes + fours + fives + sixes;
+            console.log(upScoreNoBonus);
+            document.querySelector('.upTotal').textContent = upScoreNoBonus;
+
+            if (upScoreNoBonus >= 63) {
+                bonus = 35;
+                document.querySelector('.bonus').textContent = bonus;
+
+                upScorePlusBonus = upScoreNoBonus + 35;
+                document.querySelector('.totalBonus').textContent = upScorePlusBonus;
+                document.querySelector('.totalBonusA').textContent = upScorePlusBonus;
+            } else if (upScoreNoBonus < 63) {
+                bonus = 0;
+                document.querySelector('.bonus').textContent = bonus;
+
+                upScorePlusBonus = upScoreNoBonus + bonus;
+                document.querySelector('.totalBonus').textContent = upScorePlusBonus;
+                document.querySelector('.totalBonusA').textContent = upScorePlusBonus;
+            }
 
         }
 
         document.querySelector(".onePoints").textContent = ones;
-       document.querySelector(".twoPoints").textContent = twos;
-       document.querySelector(".threePoints").textContent = threes;
-       document.querySelector(".fourPoints").textContent = fours;
-       document.querySelector(".fivePoints").textContent = fives;
-       document.querySelector(".sixPoints").textContent = sixes;
+        document.querySelector(".twoPoints").textContent = twos;
+        document.querySelector(".threePoints").textContent = threes;
+        document.querySelector(".fourPoints").textContent = fours;
+        document.querySelector(".fivePoints").textContent = fives;
+        document.querySelector(".sixPoints").textContent = sixes;
     })
 }
 
 // Three of a kind Check
 function threeOfAKindCheck() {
-  let threeOfKind = document.querySelector(".threeOfKind");
-  
-  // If clicked on
-  threeOfKind.addEventListener("click", () => {
-      if (rollsLeft < 3 && !threeOfKind.classList.contains("checked")) {
-        threeOfKind.classList.add("checked");
-        nextRound();
-      }
-      
-  })
-  
-  // check
-  if (!threeOfKind.classList.contains("checked") && rollsLeft < 3) {
-      threeOfKinds = 0;
-      
-      for (let i = 0; i < 6; i++) {
-          let howManyTimes = 0;
-          currentDices.forEach((dice) => {
-              if (dice == i) {
-                howManyTimes++;
-            }
-        })
+    let threeOfKind = document.querySelector(".threeOfKind");
 
-        if (howManyTimes == 3) {
-            currentDices.forEach((dice, index) => {
-                threeOfKinds += dice + 1;
+    // If clicked on
+    threeOfKind.addEventListener("click", () => {
+        if (rollsLeft < 3 && !threeOfKind.classList.contains("checked")) {
+            threeOfKind.classList.add("checked");
+            nextRound();
+        }
+
+    })
+
+    // check
+    if (!threeOfKind.classList.contains("checked") && rollsLeft < 3) {
+        threeOfKinds = 0;
+
+        for (let i = 0; i < 6; i++) {
+            let howManyTimes = 0;
+            currentDices.forEach((dice) => {
+                if (dice == i) {
+                    howManyTimes++;
+                }
             })
-        } 
+
+            if (howManyTimes == 3) {
+                currentDices.forEach((dice, index) => {
+                    threeOfKinds += dice + 1;
+                })
+            }
+        }
+
+        document.querySelector(".threeOfKindPoints").textContent = threeOfKinds;
+
     }
-    
-    document.querySelector(".threeOfKindPoints").textContent = threeOfKinds;
-  
-  }
 }
 
 // Four of a kind Check
 function FourOfAKindCheck() {
     let fourOfKind = document.querySelector(".fourOfKind");
-    
+
     // If clicked on
     fourOfKind.addEventListener("click", () => {
         if (rollsLeft < 3 && !fourOfKind.classList.contains("checked")) {
             fourOfKind.classList.add("checked");
             nextRound();
         }
-        
+
     })
-    
+
     // check
     if (!fourOfKind.classList.contains("checked") && rollsLeft < 3) {
-      fourOfKinds = 0;
-      
-      for (let i = 0; i < 6; i++) {
-          let howManyTimes = 0;
-          currentDices.forEach((dice) => {
-              if (dice == i) {
-                  howManyTimes++;
-              }
+        fourOfKinds = 0;
+
+        for (let i = 0; i < 6; i++) {
+            let howManyTimes = 0;
+            currentDices.forEach((dice) => {
+                if (dice == i) {
+                    howManyTimes++;
+                }
             })
-  
+
             if (howManyTimes == 4) {
-              currentDices.forEach((dice, index) => {
-                  fourOfKinds += dice + 1;
-              })
-            } 
+                currentDices.forEach((dice, index) => {
+                    fourOfKinds += dice + 1;
+                })
+            }
         }
-     
+
         document.querySelector(".fourOfKindPoints").textContent = fourOfKinds;
-    
+
     }
 }
 
 // Yahtzee Check
 
-function yahtzeeCheck () {
+function yahtzeeCheck() {
     let yahtzee500 = document.querySelector(".yahtzee");
-    
+
     // If clicked on
     yahtzee500.addEventListener("click", () => {
         if (rollsLeft < 3 && !yahtzee500.classList.contains("checked")) {
             yahtzee500.classList.add("checked");
             nextRound();
         }
-       
+
     })
-    
+
     // check
     if (!yahtzee500.classList.contains("checked") && rollsLeft < 3) {
-      yahtzees = 0;
-      
-      for (let i = 0; i < 6; i++) {
-          let howManyTimes = 0;
-          currentDices.forEach((dice) => {
-              if (dice == i) {
-                  howManyTimes++;
-              }
+        yahtzees = 0;
+
+        for (let i = 0; i < 6; i++) {
+            let howManyTimes = 0;
+            currentDices.forEach((dice) => {
+                if (dice == i) {
+                    howManyTimes++;
+                }
             })
-            
+
             if (howManyTimes == 5) {
-              currentDices.forEach((dice, index) => {
-                  yahtzees = 50;
-              })
-            } 
+                currentDices.forEach((dice, index) => {
+                    yahtzees = 50;
+                })
+            }
         }
-        
+
         document.querySelector(".yahtzeePoints").textContent = yahtzees;
-        
+
     }
-  }
-  
-function chanceCheck () {
+}
+
+function chanceCheck() {
     let chanceSS = document.querySelector(".chance");
-    
+
     chanceSS.addEventListener("click", () => {
         if (rollsLeft < 3 && !chanceSS.classList.contains("checked")) {
             chanceSS.classList.add("checked");
             nextRound();
         }
-        
+
     })
-    
+
     if (!chanceSS.classList.contains("checked") && rollsLeft < 3) {
         chances = 0;
 
         currentDices.forEach((dice) => {
-           chances += dice + 1;
-           document.querySelector(".chancePoints").textContent = chances;
+            chances += dice + 1;
+            document.querySelector(".chancePoints").textContent = chances;
         })
     }
 }
 
-function smallStraightCheck () {
+function smallStraightCheck() {
     let smlS = document.querySelector(".smallStraight");
-    
+
     let eenC = currentDices.includes(0);
     let tweeC = currentDices.includes(1);
     let drieC = currentDices.includes(2);
     let vierC = currentDices.includes(3);
     let vijfC = currentDices.includes(4);
     let zesC = currentDices.includes(5);
-    
-    
+
+
     smlS.addEventListener("click", () => {
         if (rollsLeft < 3 && !smlS.classList.contains("checked")) {
             smlS.classList.add("checked");
             nextRound();
         }
-       
+
     })
-    
+
     if (!smlS.classList.contains("checked") && rollsLeft < 3) {
         smallStraight = 0;
 
         if ((eenC && tweeC && drieC && vierC) || (tweeC && drieC && vierC && vijfC) || (drieC && vierC && vijfC && zesC)) {
             smallStraight = 30;
-            
+
         }
-        
+
         document.querySelector('.sSPoints').textContent = smallStraight;
     }
 }
 
-function largeStraightCheck () {
+function largeStraightCheck() {
     let lgS = document.querySelector(".largeStraight");
-    
+
     let eenC = currentDices.includes(0);
     let tweeC = currentDices.includes(1);
     let drieC = currentDices.includes(2);
     let vierC = currentDices.includes(3);
     let vijfC = currentDices.includes(4);
     let zesC = currentDices.includes(5);
-    
+
     lgS.addEventListener("click", () => {
         if (rollsLeft < 3 && !lgS.classList.contains("checked")) {
             lgS.classList.add("checked");
             nextRound();
         }
-       
+
     })
-    
+
     if (!lgS.classList.contains("checked") && rollsLeft < 3) {
         largeStraight = 0;
-        
+
         if ((eenC && tweeC && drieC && vierC && vijfC) || (tweeC && drieC && vierC && vijfC && zesC)) {
             largeStraight = 40;
-            
+
         }
-        
+
         document.querySelector('.lSPoints').textContent = largeStraight;
     }
 }
 
-function fullHouseChecker () {
+function fullHouseChecker() {
     let fh = document.querySelector(".fullHouse");
 
     fh.addEventListener("click", () => {
@@ -428,17 +428,17 @@ function fullHouseChecker () {
             fh.classList.add("checked");
             nextRound();
         }
-       
+
     })
-    
+
     fullHouse = 0;
-    
+
     let threeOfKindYes = false;
     let twoOfKindYes = false;
-    
+
     let two = 0;
     let three = 0;
-    
+
     for (let i = 0; i < 6; i++) {
         two = 0;
         three = 0;
@@ -449,19 +449,19 @@ function fullHouseChecker () {
         }
         if (three == 3) {
             threeOfKindYes = true;
-        } 
+        }
 
 
         for (let b = 0; b < 6; b++) {
             if (currentDices[i] == currentDices[b]) {
-               two++;
+                two++;
             }
         }
-        
+
         if (two == 2) {
             twoOfKindYes = true;
         }
-        
+
     }
 
     if (threeOfKindYes && twoOfKindYes) {
@@ -473,17 +473,17 @@ function fullHouseChecker () {
 
 
 let lowerPointsCheck = () => {
- let total = 0;
- document.querySelectorAll(".lowerPoints").forEach((block) => {
-     if (block.classList.contains("checked")) {
-        total++;
-     }
- })
+    let total = 0;
+    document.querySelectorAll(".lowerPoints").forEach((block) => {
+        if (block.classList.contains("checked")) {
+            total++;
+        }
+    })
 
- if (total == 7) {
-     lowerScore = threeOfKinds + fourOfKinds + fullHouse + smallStraight + largeStraight + yahtzees + chances;
-     document.querySelector(".lower-total").textContent = lowerScore;
- }
+    if (total == 7) {
+        lowerScore = threeOfKinds + fourOfKinds + fullHouse + smallStraight + largeStraight + yahtzees + chances;
+        document.querySelector(".lower-total").textContent = lowerScore;
+    }
 }
 
 
